@@ -9,7 +9,7 @@ import { BadRequestError } from '../_errors/bad-request-error'
 
 export async function authenticateWithPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
-    '/session/password',
+    '/sessions/password',
     {
       schema: {
         tags: ['Auth'],
@@ -35,7 +35,7 @@ export async function authenticateWithPassword(app: FastifyInstance) {
       })
 
       if (!userFromEmail) {
-        throw new BadRequestError()
+        throw new BadRequestError('Email or password are incorrect')
       }
 
       if (userFromEmail.passwordHash === null) {

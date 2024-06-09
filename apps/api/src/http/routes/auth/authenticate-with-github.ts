@@ -9,7 +9,7 @@ import { BadRequestError } from '../_errors/bad-request-error'
 
 export async function authenticateWithGithub(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
-    '/session/github',
+    '/sessions/github',
     {
       schema: {
         tags: ['Auth'],
